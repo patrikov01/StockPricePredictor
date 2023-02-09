@@ -6,6 +6,9 @@ import numpy as np
 from sklearn.svm import SVR
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
+import requests
+import pandas_datareader as pdr
+from sklearn.model_selection import train_test_split
 
 class StockPredictorApp(tk.Tk):
     def __init__(self):
@@ -15,18 +18,18 @@ class StockPredictorApp(tk.Tk):
 
         self.file_path = ""
         self.result_text = tk.StringVar()
-        self.result_text.set("Enter a stock name and select a file")
+        self.result_text.set("Enter a URL and select a file")
 
-        self.stock_label = tk.Label(self, text="Stock Name")
-        self.stock_label.grid(row=0, column=0, padx=10, pady=10)
+        self.url_label = tk.Label(self, text="URL")
+        self.url_label.grid(row=0, column=0, padx=10, pady=10)
 
-        self.stock_entry = tk.Entry(self)
-        self.stock_entry.grid(row=0, column=1, padx=10, pady=10)
-
+        self.url_entry = tk.Entry(self)
+        self.url_entry.grid(row=0, column=1, padx=10, pady=10)
+        
         self.file_label = tk.Label(self, text="File")
         self.file_label.grid(row=1, column=0, padx=10, pady=10)
 
-        self.file_entry = tk.Entry(self, state='readonly')
+        self.file_entry = tk.Entry(self)
         self.file_entry.grid(row=1, column=1, padx=10, pady=10)
 
         self.browse_button = tk.Button(self, text="Browse", command=self.browse_file)
@@ -41,6 +44,12 @@ class StockPredictorApp(tk.Tk):
         self.result_label = tk.Label(self, textvariable=self.result_text)
         self.result_label.grid(row=3, column=0, padx=10, pady=10, columnspan=3)
 
+        
+    def fetch(self):
+        url = self.url_entry.get()
+        response = requests.get(url)
+        self.data = response.json()
+
     def browse_file(self):
         self.file_path = filedialog.askopenfilename(initialdir = "/", title = "Select file", filetypes = (("CSV files", "*.csv"), ("all files", "*.*")))
         self.file_entry.config(state='normal')
@@ -49,12 +58,16 @@ class StockPredictorApp(tk.Tk):
         self.file_entry.config(state='readonly')
     
     def exit(self):
-        self.destroy()
+        self.exit_flag = True
+        self.quit()
     
     def predict(self):
         while True:
             file_path = self.file_entry.get()
-
+            
+            if file_path == "":
+                messagebox.showerror("Error", "Please select a file")
+                return
         # Load the stock data using pandas
             try:
                 stock_data = pd.read_csv(file_path)
@@ -89,6 +102,9 @@ class StockPredictorApp(tk.Tk):
             plt.show()
 
             self.file_entry.delete(0, tk.END)
+            
+            if self.exit_flag:
+                break
 
 if __name__ == "__main__":
    # root = tk.Tk()
