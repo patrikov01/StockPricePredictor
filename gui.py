@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import requests
 import pandas_datareader as pdr
 from sklearn.model_selection import train_test_split
+import datetime
 
 class StockPredictorApp(tk.Tk):
     def __init__(self):
@@ -18,7 +19,7 @@ class StockPredictorApp(tk.Tk):
 
         self.file_path = ""
         self.result_text = tk.StringVar()
-        self.result_text.set("Enter a URL and select a file")
+        self.result_text.set("Enter a URL or select a file")
 
         self.url_label = tk.Label(self, text="URL")
         self.url_label.grid(row=0, column=0, padx=10, pady=10)
@@ -99,14 +100,24 @@ class StockPredictorApp(tk.Tk):
             plt.plot(svm_prediction, label='SVM Prediction')
             plt.plot(linear_regression_prediction, label='Linear Regression Prediction')
             plt.legend()
+           
+            
+           # data = pd.read_csv(file_path)
+           # dates = data['Date'].tolist()
+           # close_prices = data['Close'].tolist()
+            
+           # ax=plt.subplot()
+           # ax.plot(dates, close_prices)
+           # ax.set_title("Stock Price over time")
+           # plt.xticks(rotation=45)
+           # plt.tight_layout()
             plt.show()
-
+            
             self.file_entry.delete(0, tk.END)
             
             if self.exit_flag:
                 break
 
 if __name__ == "__main__":
-   # root = tk.Tk()
     app = StockPredictorApp()
     app.mainloop()
