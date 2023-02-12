@@ -8,11 +8,12 @@ The Stock Price Predictor is a tool that predicts the future price of a particul
 
 Before running the Stock Price Predictor, make sure you have the following packages installed:
 
-Tkinter
-Pandas
-Numpy
-Scikit-learn
+Tkinter,
+Pandas ,
+Numpy ,
+Scikit-learn ,
 Matplotlib
+
 You can install these packages by running the following command in your terminal/command prompt:
 
 pip install tkinter pandas numpy scikit-learn matplotlib
