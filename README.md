@@ -30,6 +30,7 @@ Low
 Close
 Adj Close
 Volume
+
 To select the data file, click on the "Open" button and select the desired file.
 
 Finally, click on the "Predict" button to get the predicted stock prices. The results will be displayed in a graph, where the blue line represents the actual stock prices and the orange and the green lines represent the predicted stock prices.
@@ -37,3 +38,7 @@ Finally, click on the "Predict" button to get the predicted stock prices. The re
 **Conclusion**
 
 The Stock Price Predictor is a simple yet powerful tool that can help you predict the future price of a stock based on its historical data. It's a great tool for stock market enthusiasts and investors who want to make informed decisions. However, it's important to note that the predictions are not 100% accurate and should be used as a reference only. The stock market is inherently unpredictable, and there can be many factors that can affect the stock prices.
+
+![2023-02-12](https://user-images.githubusercontent.com/72613521/218303637-f8ff8aaf-b695-4e2c-a18c-aec88fb05f36.png)
+![2023-02-12 (1)](https://user-images.githubusercontent.com/72613521/218303661-dc39e804-45aa-490e-8b17-9b92b74b342b.png)
+![2023-02-12 (2)](https://user-images.githubusercontent.com/72613521/218303671-507c729f-f3a9-4e72-ad91-45525644ea32.png)
